@@ -8,6 +8,7 @@ import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pers.anshun.handler.NginxLogHandler;
 import pers.anshun.receiver.KafkaReceiver;
 
 public class SparkStreamingEngine {
@@ -22,7 +23,7 @@ public class SparkStreamingEngine {
     private void StartSpark() {
         KafkaReceiver kafkaReceiver = new KafkaReceiver(jssc);
         JavaDStream<String> nginxLogs = kafkaReceiver.GetLogs();
-        nginxLogs.print();
+        NginxLogHandler.Handler(nginxLogs);
         jssc.start();
     }
 
