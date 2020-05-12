@@ -16,7 +16,7 @@ public class SparkStreamingEngine {
 
     private SparkStreamingEngine(String appName) {
         SparkConf sparkConf = new SparkConf().setAppName(appName);
-        this.jssc = new JavaStreamingContext(sparkConf, Durations.seconds(2));
+        this.jssc = new JavaStreamingContext(sparkConf, Durations.seconds(20));
     }
 
     private void StartSpark() {

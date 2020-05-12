@@ -17,7 +17,6 @@ public class KafkaReceiver {
     private static final Logger logger = LoggerFactory.getLogger(KafkaReceiver.class);
     private static String kafkaIp;
     private static String topics;
-    private static String groupName;
     private JavaStreamingContext jssc;
     private Map<String, String> kafkaParams;
     private Set<String> topicsSet;
@@ -33,10 +32,6 @@ public class KafkaReceiver {
         }
         kafkaIp = props.getProperty("kafkaIp");
         topics = props.getProperty("topics");
-        groupName = props.getProperty("groupName");
-        //kafkaIp = "172.17.1.65";
-        //topics = "ioc";
-        //groupName = "test";
     }
 
     public KafkaReceiver(JavaStreamingContext jssc) {
@@ -44,7 +39,6 @@ public class KafkaReceiver {
         this.topicsSet = new HashSet<>(Arrays.asList(topics.split(",")));
         this.kafkaParams = new HashMap<>();
         kafkaParams.put("metadata.broker.list", kafkaIp);
-
         logger.info("init kafka receiver......");
     }
 
